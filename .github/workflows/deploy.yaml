@@ -30,7 +30,7 @@ jobs:
 
       - name: Build Docker Images
         run: |-
-          docker build -t us-central1-docker.pkg.dev/calendar-test01-337101/quickstart-docker-repo/quickstart-image:tag1
+          docker build -t us-central1-docker.pkg.dev/calendar-test01-337101/quickstart-docker-repo/quickstart-image:tag1 .
 
       - name: Push Image to ArtifactRegistry
         run: |-
