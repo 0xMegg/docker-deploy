@@ -30,11 +30,11 @@ jobs:
 
       - name: Build Docker Images
         run: |-
-          docker build -t $URL
+          docker build -t us-central1-docker.pkg.dev/calendar-test01-337101/quickstart-docker-repo/quickstart-image:tag1
 
       - name: Push Image to ArtifactRegistry
         run: |-
-          docker image push $URL
+          docker image push us-central1-docker.pkg.dev/calendar-test01-337101/quickstart-docker-repo/quickstart-image:tag1
       
       - name: Discord notification
         env:
