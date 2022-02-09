@@ -28,6 +28,9 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
+      - run: |-
+          gcloud --quiet auth configure-docker us-central1-docker.pkg.dev
+
       - name: Build Docker Images
         run: |-
           docker build -t us-central1-docker.pkg.dev/calendar-test01-337101/quickstart-docker-repo/quickstart-image:tag1 .
