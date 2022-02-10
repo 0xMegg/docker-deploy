@@ -28,7 +28,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - uses: google-github-actions/setup-gcloud@v0.2.0
+      - uses: google-github-actions/setup-gcloud
         with:
           service_account_email: deploy-test@calendar-test01-337101.iam.gserviceaccount.com
           project_id: calendar-test01-337101
