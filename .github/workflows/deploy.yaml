@@ -47,10 +47,10 @@ jobs:
       - name: Push Image to ArtifactRegistry
         run: |-
           docker image push us-central1-docker.pkg.dev/calendar-test01-337101/quickstart-docker-repo/quickstart-image:tag1
-      
+
       - name: Discord notification
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         uses: Ilshidur/action-discord@master
         with:
-          args: "The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed."
+          args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed.'
