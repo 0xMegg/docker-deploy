@@ -36,21 +36,21 @@ jobs:
       - run: |-
           gcloud --quiet auth configure-docker us-central1-docker.pkg.dev
 
-      - name: Build Docker Images
-        run: |-
-          docker build -t us-central1-docker.pkg.dev/calendar-test01-337101/quickstart-docker-repo/quickstart-image:tag1 .
+      # - name: Build Docker Images
+      #   run: |-
+      #     docker build -t us-central1-docker.pkg.dev/calendar-test01-337101/quickstart-docker-repo/quickstart-image:tag1 .
 
-      - name: Check Docker Images
-        run: |-
-          docker images
+      # - name: Check Docker Images
+      #   run: |-
+      #     docker images
 
-      - name: Push Image to ArtifactRegistry
-        run: |-
-          docker image push us-central1-docker.pkg.dev/calendar-test01-337101/quickstart-docker-repo/quickstart-image:tag1
+      # - name: Push Image to ArtifactRegistry
+      #   run: |-
+      #     docker image push us-central1-docker.pkg.dev/calendar-test01-337101/quickstart-docker-repo/quickstart-image:tag1
 
       - name: Discord notification
         env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          DISCORD_WEBHOOK: https://discord.com/api/webhooks/940852537123303455/4NBfLoARh6Wg4NQ3hTOXcMnj3wqrTxpHGPBAx4O38hVjkyK_ID0oK_xcbFMLoL5EYS-X/github
         uses: Ilshidur/action-discord@master
         with:
           args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed.'
