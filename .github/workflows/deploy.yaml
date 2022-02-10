@@ -30,7 +30,7 @@ jobs:
 
       - uses: google-github-actions/setup-gcloud@v0.2.0
         with:
-          service_account_key: deploy-test@calendar-test01-337101.iam.gserviceaccount.com
+          service_account_email: deploy-test@calendar-test01-337101.iam.gserviceaccount.com
           project_id: calendar-test01-337101
           # export_default_credentials: true
 
