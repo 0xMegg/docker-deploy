@@ -41,6 +41,12 @@ jobs:
         run: |-
           docker image push us-central1-docker.pkg.dev/calendar-test01-337101/quickstart-docker-repo/quickstart-image:tag1
 
+      - name : Deploy with Cloud Run
+        uses: google-github-actions/deploy-cloudrun@v0
+        with:
+          service: quickstart-image
+          image: us-central1-docker.pkg.dev/calendar-test01-337101/quickstart-docker-repo/quickstart-image@sha256:96b7ce6cef9173154434b92b5ffecb198026d638ee9fdc0f1845ea7d5783d2c1
+
       # - name: Discord notification
       #   uses: Ilshidur/action-discord@master
       #   with:
