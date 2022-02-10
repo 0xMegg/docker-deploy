@@ -14,27 +14,22 @@ on:
   workflow_dispatch:
 
 env:
-  URL: us-central1-docker.pkg.dev/calendar-test01-337101/quickstart-docker-repo/quickstart-image:tag1
+  DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - uses: google-github-actions/setup-gcloud@v0.2.0
-        with:
-          service_account_key: ${{ secrets.GCP_CREDENTIALS }}
-          project_id: calendar-test01-337101
+      # - uses: google-github-actions/setup-gcloud@v0.2.0
+      #   with:
+      #     service_account_key: ${{ secrets.GCP_CREDENTIALS }}
+      #     project_id: calendar-test01-337101
 
-      - run: |-
-          gcloud --quiet auth configure-docker us-central1-docker.pkg.dev
+      # - run: |-
+      #     gcloud --quiet auth configure-docker us-central1-docker.pkg.dev
 
       # - name: Build Docker Images
       #   run: |-
@@ -49,8 +44,6 @@ jobs:
       #     docker image push us-central1-docker.pkg.dev/calendar-test01-337101/quickstart-docker-repo/quickstart-image:tag1
 
       - name: Discord notification
-        env:
-          DISCORD_WEBHOOK: https://discord.com/api/webhooks/940852537123303455/4NBfLoARh6Wg4NQ3hTOXcMnj3wqrTxpHGPBAx4O38hVjkyK_ID0oK_xcbFMLoL5EYS-X/github
         uses: Ilshidur/action-discord@master
         with:
           args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed.'
