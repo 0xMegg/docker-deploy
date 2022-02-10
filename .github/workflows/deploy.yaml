@@ -13,8 +13,6 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# env:
-#   DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
 
 jobs:
   build:
@@ -23,27 +21,27 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      # - uses: google-github-actions/setup-gcloud@v0.2.0
-      #   with:
-      #     service_account_key: ${{ secrets.GCP_CREDENTIALS }}
-      #     project_id: calendar-test01-337101
-
-      # - run: |-
-      #     gcloud --quiet auth configure-docker us-central1-docker.pkg.dev
-
-      # - name: Build Docker Images
-      #   run: |-
-      #     docker build -t us-central1-docker.pkg.dev/calendar-test01-337101/quickstart-docker-repo/quickstart-image:tag1 .
-
-      # - name: Check Docker Images
-      #   run: |-
-      #     docker images
-
-      # - name: Push Image to ArtifactRegistry
-      #   run: |-
-      #     docker image push us-central1-docker.pkg.dev/calendar-test01-337101/quickstart-docker-repo/quickstart-image:tag1
-
-      - name: Discord notification
-        uses: Ilshidur/action-discord@master
+      - uses: google-github-actions/setup-gcloud@v0.2.0
         with:
-          args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed.'
+          service_account_key: ${{ secrets.GCP_CREDENTIALS }}
+          project_id: calendar-test01-337101
+
+      - run: |-
+          gcloud --quiet auth configure-docker us-central1-docker.pkg.dev
+
+      - name: Build Docker Images
+        run: |-
+          docker build -t us-central1-docker.pkg.dev/calendar-test01-337101/quickstart-docker-repo/quickstart-image:tag1 .
+
+      - name: Check Docker Images
+        run: |-
+          docker images
+
+      - name: Push Image to ArtifactRegistry
+        run: |-
+          docker image push us-central1-docker.pkg.dev/calendar-test01-337101/quickstart-docker-repo/quickstart-image:tag1
+
+      # - name: Discord notification
+      #   uses: Ilshidur/action-discord@master
+      #   with:
+      #     args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed.'
